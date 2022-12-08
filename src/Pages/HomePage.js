@@ -1,16 +1,15 @@
-import React from 'react'
-import SliderCompo from '../Components/HomeComponents/SliderCompo'
+import React from "react";
+import SliderCompo from "../Components/HomeComponents/SliderCompo";
 
-import HomeCompo from '../Components/HomeComponents/HomeCompo'
-
+import HomeCompo from "../Components/HomeComponents/HomeCompo";
 
 const HomePage = () => {
   return (
     <>
-    <SliderCompo/>
-    <HomeCompo/>
+      <SliderCompo />
+      <HomeCompo />
     </>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;
