@@ -58,13 +58,41 @@ opacity: 0.8;
   border: solid 1px rgb(209, 208, 208) !important;
 }
 /*ــــــــــــــــــــfooterــــــــــــــــ*/
-.footer{
-/*     
-    position:absolute;
-    right:0;
-    left:0;
-    bottom:0;
-    
+@media  screen and (max-width:900px )and ( min-width:768px) {
+    .prv{
+   display: flex;
+   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+        }
+     
+}
+@media  screen and (max-width:767px) {
+    .footer{
+   display: flex;
+   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+        }
+        .footer div{
+ 
+            margin-top: 20px;
+            
+        }
+}
+@media  screen and (max-width:500px) {
+    .footer div{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+align-items: center;
+        margin-top: 20px;
+        
+    }
 
-    width: 100%; */
+        .footer  img{
+            margin: 5px 0px !important;
+            
+            padding: 0;
+        }
 }

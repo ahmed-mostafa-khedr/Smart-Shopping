@@ -24,7 +24,12 @@ function NavbarLoginCompo({ loginState }) {
           <Navbar.Brand className="font-en text-light  mx-sm-2 mx-lg-5">
             <Link to="/">
               <Jump>
-                <img src={logo} className="logo" alt="logo" />{" "}
+                <img
+                  src={logo}
+                  className="logo"
+                  style={{ boxShadow: "0px 1px 5px white" }}
+                  alt="logo"
+                />{" "}
               </Jump>
             </Link>
           </Navbar.Brand>
