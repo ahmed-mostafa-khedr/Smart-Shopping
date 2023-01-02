@@ -7,7 +7,7 @@ import PopularPages from "./Pages/PopularPages";
 import ShoppingPage from "./Pages/ShoppingPage";
 import LoginPage from "./Pages/AuthPages/LoginPage";
 import RegisterPage from "./Pages/AuthPages/RegisterPage";
-import FooterCompo from "./Components/utilities/FooterCompo";
+
 
 function App() {
   return (
@@ -17,10 +17,10 @@ function App() {
           <Route
             path="/"
             element={
-              localStorage.getItem("username") ? (
+              localStorage.getItem("email") ? (
                 <NavbarLoginCompo
-                  loginState={` مرحباً بك  ${localStorage
-                    .getItem("username")
+                  loginState={` ${localStorage
+                    .getItem("uname")
                     .trim()
                     .toUpperCase()}`}
                 />
@@ -39,7 +39,7 @@ function App() {
         </Routes>
       </BrowserRouter>
 
-      <FooterCompo />
+    
     </div>
   );
 }

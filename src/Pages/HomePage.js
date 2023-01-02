@@ -1,6 +1,6 @@
 import React from "react";
 import SliderCompo from "../Components/HomeComponents/SliderCompo";
-
+import FooterCompo from "../Components/utilities/FooterCompo";
 import HomeCompo from "../Components/HomeComponents/HomeCompo";
 
 const HomePage = () => {
@@ -8,6 +8,7 @@ const HomePage = () => {
     <>
       <SliderCompo />
       <HomeCompo />
+      <FooterCompo />
     </>
   );
 };

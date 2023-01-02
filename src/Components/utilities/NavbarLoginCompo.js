@@ -4,36 +4,40 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import logo from "../../Images/logo.png";
 import Jump from "react-reveal/Jump";
-
+import { Link } from "react-router-dom";
 import { Outlet, NavLink } from "react-router-dom";
 
 function NavbarLoginCompo({ loginState }) {
-  const Is_Login = localStorage.getItem("username");
+  const Is_Login = localStorage.getItem("email");
   return (
     <>
       <Navbar
         bg="dark"
         expand="sm"
         className="navbar  sticky-top"
-        style={{ height: "60px", padding: "0", margin: "0" }}
+        style={{
+          padding: "0",
+          margin: "0",
+        }}
       >
         <Container fluid>
-          <NavLink to="/" className="font-en text-light  mx-sm-2 mx-lg-5">
-            {" "}
-            <Jump>
-              <img src={logo} className="logo" alt="logo" />{" "}
-            </Jump>
-          </NavLink>
+          <Navbar.Brand className="font-en text-light  mx-sm-2 mx-lg-5">
+            <Link to="/">
+              <Jump>
+                <img src={logo} className="logo" alt="logo" />{" "}
+              </Jump>
+            </Link>
+          </Navbar.Brand>
 
           <Navbar.Toggle
             style={{ color: "white", backgroundColor: "white" }}
-            aria-controls="navbarScroll"
+            ria-controls="basic-navbar-nav"
           />
           <Navbar.Collapse
-            id="navbarScroll"
+            id="basic-navbar-nav"
             style={{
               color: "white",
-              backgroundColor: "black",
+
               marginTop: "10px",
               width: "100%",
             }}
@@ -41,12 +45,16 @@ function NavbarLoginCompo({ loginState }) {
             <Form.Control
               type="search"
               placeholder="إبحث...."
+              style={{
+                border: "0",
+                boxShadow: "1px 1px 1px white",
+              }}
               className="mx-sm-2 my-2 py-1 w-100 font-ar"
               aria-label="Search"
             />
 
             <Nav
-              className="mx-sm-2 mx-lg-5 p-0"
+              className=" mx-sm-2 mx-lg-5 p-0"
               style={{ maxHeight: "100px", color: "white" }}
               navbarScroll
             >
@@ -56,21 +64,26 @@ function NavbarLoginCompo({ loginState }) {
                 style={{ color: "white", textDecoration: "none" }}
               >
                 <h5 className=" mt-2 ms-2">
-                  <i class="fa-solid fa-user text-secondary"></i>
+                  <i class="fa-solid fa-user text-light "></i>
                 </h5>
                 <h6
                   style={{
-                    color: "whie",
-                    fontSize: "10px",
-                    maxWidth: "150px",
-                    minWidth: "100px",
-                    opacity: "0.8",
+                    fontSize: "12px",
+
+                    opacity: "0.7",
                   }}
-                  className="text-center font-ar mx-2 my-auto "
+                  className="text-center text-light font-ar mx-2 my-auto "
                 >
-                  {" "}
-                  {loginState}{" "}
+                  {loginState}
                 </h6>
+                <span
+                  className="mx-2"
+                  style={{
+                    width: "3px",
+                    height: "30px",
+                    backgroundColor: "white",
+                  }}
+                ></span>
               </NavLink>
 
               <NavLink
@@ -78,47 +91,50 @@ function NavbarLoginCompo({ loginState }) {
                 className="nav-text d-flex  justify-content-center my-auto mx-1 p-0"
                 style={{ color: "white", textDecoration: "none" }}
               >
-                <h5 className=" mt-2 me-2">
-                  <i class="fa-solid fa-cart-arrow-down text-info"></i>
+                <h5 className=" mt-2 ms-2">
+                  <i class="fa-solid fa-cart-arrow-down text-light"></i>
                 </h5>
-                <p
+                <h6
                   style={{
-                    color: "whie",
-                    fontSize: "5px",
-                    width: "80px",
-                    opacity: "0.8",
+                    fontSize: "12px",
+
+                    opacity: "0.7",
                   }}
-                  className="text-center font-ar my-auto text-info"
+                  className="text-center text-light font-ar my-auto "
                 >
                   <b>عربه التسوق</b>{" "}
-                </p>
+                </h6>
               </NavLink>
 
               <Nav.Link
                 href="/"
                 className="nav-text d-flex  justify-content-center my-auto mx-1 p-0"
-                style={{ color: "white" }}
+                style={{ color: "white", textDecoration: "none" }}
               >
                 {Is_Login ? (
                   <>
-                    <h5 className=" mt-2 me-2">
-                      <i class="fa-solid fa-arrow-down text-secondary"></i>
-                    </h5>
-                    <p
+                    <span
+                      className="mx-2"
                       style={{
-                        color: "whie",
-                        fontSize: "5px",
-                        width: "80px",
-                        opacity: "0.8",
-                        textDecoration: "none",
-                        cursor: "pointer",
+                        width: "3px",
+                        height: "30px",
+                        backgroundColor: "white",
                       }}
-                      className="text-center text-secondary font-ar my-auto "
+                    ></span>
+                    <h5 className=" mt-2 ms-2">
+                      <i class="fa-solid fa-arrow-down text-light"></i>
+                    </h5>
+                    <h6
+                      style={{
+                        fontSize: "12px",
+
+                        opacity: "0.7",
+                      }}
+                      className="text-center text-light font-ar my-auto "
                       onClick={() => localStorage.clear()}
                     >
-                      {" "}
-                      <b>Logout</b>{" "}
-                    </p>
+                      تسجيل الخروج
+                    </h6>
                   </>
                 ) : (
                   ""

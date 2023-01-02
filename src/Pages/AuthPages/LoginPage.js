@@ -1,77 +1,110 @@
-import React from 'react'
-import{ Form , Button } from 'react-bootstrap';
-import {Link} from 'react-router-dom';
-
-
+import React from "react";
+import { Form, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Formik } from "formik";
+import * as Yup from "yup";
 const LoginPage = () => {
-  let userEmail=""
-  let userPassword=""
-  let email=localStorage.getItem('email')
-  let password=localStorage.getItem('password')
-  const loginfun=(e)=>{
-    e.preventDefault();
+  let emailInLocal = localStorage.getItem("email");
+  let passwordInLocal = localStorage.getItem("password");
 
-    if(userEmail === "" || userPassword === ""  ){
-      alert(" من فضلك قم بادخال البيانات ")
-    }
-    else {
-
-      if (email === userEmail && password === userPassword ){
-        
-        setTimeout(()=>{
-          window.location='/';
-      },1500)
-    }else {
-        alert(" بيانات غير صحيحه من فضلك تاكد من البريد وكلمه المرور الخاصه بك ")
-    }
-  }
-
-      
-      
-
-     } 
-   
-  
   return (
-    <div >
-      <h4 className="font-ar my-5 text-center" style={{fontWeight:"bold"}}> تسجيل الدخول </h4>
-           <Form className="col-6 d-flex flex-column text-center mx-auto mt-5 font-ar" style={{}}>
-      <Form.Group className="mb-3  text-center" controlId="formBasicEmail">
-        <Form.Label  > البريد الالكتروني </Form.Label>
-        <Form.Control 
-        className="  text-center" 
-        type="email" 
-        placeholder=" " 
-        onChange={(e)=> userEmail = e.target.value}
-        />
-        
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label> الرقم السري </Form.Label>
-        <Form.Control 
-        type="password" 
-        placeholder="" 
-        onChange={(e)=>userPassword = e.target.value}
-        />
-      </Form.Group>
-      
-      <Button 
-      variant="secondary" 
-      type="submit"
-      onClick={(e)=>loginfun(e)}
+    <>
+      <Formik
+        initialValues={{ email: "", password: "" }}
+        validationSchema={Yup.object({
+          email: Yup.string()
+            .email("بيانات غير صحيحة")
+            .required("لايمكن ترك البريد الالكتروني فارغا"),
+          password: Yup.string().required("لايمكن ترك كلمة المرور  فارغه"),
+        })}
+        onSubmit={(values, { setSubmitting }) => {
+          setTimeout(() => {
+            if (
+              values.email === emailInLocal &&
+              values.password === passwordInLocal
+            ) {
+              setSubmitting(false);
+              window.location = "/";
+            } else {
+              alert(
+                " بيانات غير صحيحه من فضلك تاكد من البريد وكلمه المرور الخاصه بك "
+              );
+            }
+          }, 1500);
+        }}
       >
-        تسجيل الدخول
-      </Button>
-      <Form.Text className="text-muted">
-          لن تتم مشاركه بياناتك مع اي شخص آخر
-        </Form.Text>
-    </Form>
-    <p  className="font-ar my-5 py-5 text-center"> ليس لديك حساب ؟ <Link to="/register" className="text-danger" style={{textDecoration:"none"}} >انشاء حساب جديد</Link> </p>
-    
+        {(formik) => (
+          <Form
+            className="col-6 d-flex flex-column text-center mx-auto mt-5 font-ar"
+            onSubmit={formik.handleSubmit}
+          >
+            <h4
+              className="font-ar my-5 text-center"
+              style={{ fontWeight: "bold" }}
+            >
+              تسجيل الدخول{" "}
+            </h4>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label htmlFor="email"> البريد الالكتروني </Form.Label>
+              <Form.Control
+                id="email"
+                style={{ opacity: "0.6" }}
+                className="  text-center"
+                type="email"
+                placeholder="...البريد الكتروني"
+                {...formik.getFieldProps("email")}
+              />
+              {formik.touched.email && formik.errors.email ? (
+                <p className="text-danger">{formik.errors.email}</p>
+              ) : null}
+            </Form.Group>
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label htmlFor="password"> الرقم السري </Form.Label>
+              <Form.Control
+                id="password"
+                style={{ opacity: "0.6" }}
+                className="  text-center"
+                type="password"
+                placeholder="أدخل كلمة السر"
+                {...formik.getFieldProps("password")}
+              />
+              {formik.touched.password && formik.errors.password ? (
+                <p className="text-danger">{formik.errors.password}</p>
+              ) : null}
+            </Form.Group>
 
-    </div>
-  )
-}
+            <button
+              style={{
+                border: "1px solid #5a2e5d",
+                color: "#5a2e5d",
+                backgroundColor: "white",
+                padding: "5px",
+                borderRadius: "5px",
+              }}
+              className="bttn "
+              type="submit"
+            >
+              تسجيل الدخول
+            </button>
+            <Form.Text className="text-muted">
+              لن تتم مشاركه بياناتك مع اي شخص آخر
+            </Form.Text>
+            <p className="font-ar my-5 py-5 text-center">
+              {" "}
+              ليس لديك حساب ؟{" "}
+              <Link
+                to="/register"
+                className="text-danger"
+                style={{ textDecoration: "none" }}
+              >
+                انشاء حساب جديد
+              </Link>{" "}
+            </p>
+          </Form>
+        )}
+      </Formik>
+    </>
+  );
+};
 
-export default LoginPage
+export default LoginPage;
